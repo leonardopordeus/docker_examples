@@ -1,5 +1,5 @@
 
-Exemplos de Docker Compose configurados para uso geral.
+Exemplos de Stacks com Docker Compose configurados para uso geral.
 
  - Elasticsearch + Kibana
  - Grafana
