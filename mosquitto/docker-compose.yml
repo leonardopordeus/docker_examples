@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  mosquitto_network:
+    name: mosquitto_network
+
+services:
+  mosquitto:
+    init: true
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    volumes:
+      - ./mosquitto/config:/config
+      - ./mosquitto/log:/log
+      - ./mosquitto/data:/data
+    ports:
+      - "1883:1883"
+    networks: 
+      mosquitto_network: {}
