@@ -11,3 +11,4 @@ Run:
 Delete:
 `docker-compose down -v`
 
+Obs: Adicionar -d para subir em backgroud.
