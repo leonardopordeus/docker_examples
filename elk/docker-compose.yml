@@ -10,7 +10,7 @@ networks:
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
     container_name: elasticsearch
     environment:
       - node.name=elasticsearch
@@ -25,9 +25,28 @@ services:
       - elastic
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.10.1
+    image: docker.elastic.co/kibana/kibana:7.15.0
     container_name: kibana
     ports:
       - 5601:5601
     networks: 
       - elastic
+      
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.15.0
+    cap_add: ["CHOWN", "DAC_OVERRIDE", "SETGID", "SETUID"]
+    cap_drop: ["ALL"]
+    #volumes:
+    #  - ./apm/apm-server.docker.yml:/usr/share/apm-server/apm-server.yml
+    ports:
+    - 8200:8200
+    networks:
+    - elastic
+    command: >
+       apm-server -e
+         -E apm-server.rum.enabled=true
+         -E setup.kibana.host=kibana:5601
+         -E setup.template.settings.index.number_of_replicas=0
+         -E apm-server.kibana.enabled=true
+         -E apm-server.kibana.host=kibana:5601
+         -E output.elasticsearch.hosts=["elasticsearch:9200"]
