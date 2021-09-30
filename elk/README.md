@@ -18,6 +18,14 @@ https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-do
 
 https://github.com/deviantony/docker-elk
 
+## Security
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-stack-security.html
+
+https://www.elastic.co/guide/en/elasticsearch/reference/7.15/security-minimal-setup.html#add-built-in-users
+
 ##APM
 
 To configure APM
